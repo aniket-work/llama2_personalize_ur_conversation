@@ -6,9 +6,72 @@ from message_utils import display_message
 
 DB_FAISS_PATH = 'vectorstore/db_faiss'
 
-st.title("Craft Personalized Conversations ")
+# Apply custom CSS style to the Streamlit app
+st.markdown(
+    """
+    <style>
+    .main-title {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 30px;
+        color: #1E88E5;
+        font-family: 'Courier New', monospace;
+    }
+    .content-container {
+        background-color: #FAFAFA;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+    .user-input {
+        margin-top: 10px;
+    }
+    .submit-button {
+        background-color: #1E88E5;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        font-family: 'Courier New', monospace;
+    }
+    .response-container {
+        margin-top: 20px;
+        background-color: #FFFFFF;
+        border-radius: 10px;
+        padding: 20px;
+    }
+    .message {
+        margin-top: 10px;
+        padding: 8px;
+        border-radius: 5px;
+        font-family: 'Courier New', monospace;
+    }
+    .user-message {
+        background-color: #4CAF50;
+        color: white;
+    }
+    .bot-message {
+        background-color: #FFC107;
+        color: black;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
-knowledge_base = st.sidebar.file_uploader("Upload your knowledge base", type="csv")
+# Display the main title using the custom CSS class
+st.markdown("<div class='main-title'>Craft Personalized Conversations</div>", unsafe_allow_html=True)
+
+# File uploader centered at the top
+col1, col2, col3 = st.columns([1, 6, 1])
+with col2:
+    knowledge_base = st.file_uploader("Upload your knowledge base", type="csv")
+
+# Rest of the code remains the same...
+
+
 
 # Check if a CSV file has been uploaded
 if knowledge_base:
